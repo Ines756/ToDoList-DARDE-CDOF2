@@ -35,7 +35,7 @@ def main():
     todo_list = TodoList()
 
     while True:
-        os.system('cls' if os.name == 'nt' else 'clear') 
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("=== To-Do List ===")
         todo_list.show_tasks()
 
