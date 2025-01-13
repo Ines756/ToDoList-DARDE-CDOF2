@@ -1,6 +1,5 @@
 import os
 
-# A simple class to manage the to-do list
 class TodoList:
     def __init__(self):
         self.tasks = [] 
@@ -27,8 +26,8 @@ class TodoList:
         filtered_tasks = [
             (index, task) for index, task in enumerate(self.tasks, 1)
             if not (hide_completed and task["completed"])
-        ]
-        if not filtered_tasks:
+        ] # have a list with tasks that are not completed only
+        if not filtered_tasks: # no tasks to be marked done
             print("No tasks to display.")
             return
         for index, task in filtered_tasks:
