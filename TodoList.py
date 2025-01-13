@@ -1,6 +1,5 @@
 import os
 
-# A simple class to manage the to-do list
 class TodoList:
     def __init__(self):
         self.tasks = [] 
@@ -23,11 +22,15 @@ class TodoList:
         except IndexError:
             print("Invalid task number!")
 
-    def show_tasks(self):
-        if not self.tasks:
+    def show_tasks(self, hide_completed=False):
+        filtered_tasks = [
+            (index, task) for index, task in enumerate(self.tasks, 1)
+            if not (hide_completed and task["completed"])
+        ] # have a list with tasks that are not completed only
+        if not filtered_tasks: # no tasks to be marked done
             print("No tasks to display.")
             return
-        for index, task in enumerate(self.tasks, 1):
+        for index, task in filtered_tasks:
             status = "Done" if task["completed"] else "ToDo"
             print(f"{index}. {task['task']} [{status}]")
 
@@ -58,7 +61,8 @@ def main():
             except ValueError:
                 print("Please enter a valid number.")
         elif choice == "3":
-            todo_list.show_tasks()
+            print("Tasks available to complete:")
+            todo_list.show_tasks(hide_completed=True)  # Masquer les tâches terminées
             try:
                 task_number = int(input("Enter the task number to mark as completed: "))
                 todo_list.complete_task(task_number)
