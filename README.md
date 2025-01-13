@@ -23,8 +23,14 @@ Clone the repository and then install the project using `setup.py`:
 To use the application, simply run the todo.py file.
 Once the application is running, you can interact with it directly in the terminal. 
 1. To Add a task
-2. To mark a task as completed
+![image](https://github.com/user-attachments/assets/29f50dbf-8062-461d-bf37-4823656fd439)
+
+2. To mark a task as completed : when a task is marked as completed, it will not be displayed anymore in this page. 
+![image](https://github.com/user-attachments/assets/7fbc2626-12ab-4919-93a7-00cdc85b87e3)
+
 3. To remove a task
+![image](https://github.com/user-attachments/assets/87e3b49e-77a0-4963-bb1a-40a428898fa2)
+
 4. Quit the application
 
 ### Contributing
