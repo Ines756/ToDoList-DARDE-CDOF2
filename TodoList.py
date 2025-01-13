@@ -2,11 +2,11 @@ import os
 
 class TodoList:
     def __init__(self):
-        self.tasks = [] 
+        self.tasks = []
 
-    def add_task(self, task):
-        self.tasks.append({"task": task, "completed": False})
-        print(f"Task '{task}' added!")
+    def add_task(self, task, priority):
+        self.tasks.append({"task": task, "completed": False, "priority": priority})
+        print(f"Task '{task}' with priority '{priority}' added!")
 
     def remove_task(self, task_number):
         try:
@@ -32,8 +32,26 @@ class TodoList:
             return
         for index, task in filtered_tasks:
             status = "Done" if task["completed"] else "ToDo"
-            print(f"{index}. {task['task']} [{status}]")
+            priority_color = self.get_priority_color(task["priority"])
+            print(f"{index}. {task['task']} [{status}] {priority_color}(Priority: {self.get_priority_text(priority_color)})\033[0m")
 
+    def get_priority_text(self, priority):
+        if priority == "Magenta":
+            return "High"  
+        elif priority == "Green":
+            return "Medium" 
+        elif priority == "Blue1":
+            return "Low" 
+        return "Unknown"
+
+    def get_priority_color(self, priority):
+        if priority == "High":
+            return "\033[95m" 
+        elif priority == "Medium":
+            return "\033[93m" 
+        elif priority == "Low":
+            return "\033[94m" 
+        return "\033[0m" 
 def main():
     todo_list = TodoList()
 
@@ -52,7 +70,21 @@ def main():
 
         if choice == "1":
             task = input("Enter the task description: ")
-            todo_list.add_task(task)
+            print("Choose a priority for the task:")
+            print("1. Magenta (High)")
+            print("2. Green (Medium)")
+            print("3. Blue (Low)")
+            priority_choice = input("Enter priority (1/2/3): ")
+            if priority_choice == "1":
+                priority = "High"
+            elif priority_choice == "2":
+                priority = "Medium"
+            elif priority_choice == "3":
+                priority = "Low"
+            else:
+                print("Invalid priority choice, defaulting to Green.")
+                priority = "Green"
+            todo_list.add_task(task, priority)
         elif choice == "2":
             todo_list.show_tasks()
             try:
