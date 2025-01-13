@@ -19,14 +19,10 @@ You need to have Python installed on your machine. If you don't have it already,
 
 Clone the repository and then install the project using `setup.py`:
 
-```bash
-git clone <your-repository-url>
-cd todo-list
-python setup.py install
-
 ### Usage
-To use the application, simply run the todo.py file:
+To use the application, simply run the todo.py file.
 
 ### License
-This project is licensed under the MIT License - see the LICENSE.md file for details
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
 
