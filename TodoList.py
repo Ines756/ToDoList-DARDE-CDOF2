@@ -29,17 +29,25 @@ class TodoList:
         for index, task in enumerate(self.tasks, 1):
             status = "Done" if task["completed"] else "ToDo"
             priority_color = self.get_priority_color(task["priority"])
-            print(f"{priority_color}{index}. {task['task']} [{status}] (Priority: {task['priority']})\033[0m")
+            print(f"{index}. {task['task']} [{status}] {priority_color}(Priority: {self.get_priority_text(priority_color)})\033[0m")
+
+    def get_priority_text(self, priority):
+        if priority == "Magenta":
+            return "High"  
+        elif priority == "Green":
+            return "Medium" 
+        elif priority == "Blue1":
+            return "Low" 
+        return "Unknown"
 
     def get_priority_color(self, priority):
-        if priority == "Red":
-            return "\033[91m"  # Rouge
-        elif priority == "Orange":
-            return "\033[38;5;214m"  # Orange
-        elif priority == "Green":
-            return "\033[92m"  # Vert
-        return "\033[0m"  # Par défaut
-
+        if priority == "High":
+            return "\033[95m" 
+        elif priority == "Medium":
+            return "\033[93m" 
+        elif priority == "Low":
+            return "\033[94m" 
+        return "\033[0m" 
 def main():
     todo_list = TodoList()
 
@@ -59,9 +67,9 @@ def main():
         if choice == "1":
             task = input("Enter the task description: ")
             print("Choose a priority for the task:")
-            print("1. Red (High)")
-            print("2. Orange (Medium)")
-            print("3. Green (Low)")
+            print("1. Magenta (High)")
+            print("2. Green (Medium)")
+            print("3. Blue (Low)")
             priority_choice = input("Enter priority (1/2/3): ")
             if priority_choice == "1":
                 priority = "High"
